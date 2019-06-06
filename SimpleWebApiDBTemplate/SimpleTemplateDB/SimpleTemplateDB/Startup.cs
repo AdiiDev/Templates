@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Common.UOW;
+﻿using Common.UOW;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using SimpleTemplateDB.Filters;
 
 namespace SimpleTemplateDB
@@ -29,12 +22,11 @@ namespace SimpleTemplateDB
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = @"Server=.;Database=TestingTemplate;Trusted_Connection=True;MultipleActiveResultSets=true;";
-            //var connection = @"data source=.\SQLEXPRESS;initial catalog=MangaProject;integrated security=True;MultipleActiveResultSets=True;";
+
             services.AddDbContext<DataContext>
                 (options =>
                 {
                     options.UseSqlServer(connection);
-                    //options.UseOpenIddict();
                 });
 
             //Add Unit of work DI

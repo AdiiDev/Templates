@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimpleTemplateDB.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SimpleTemplateDB
 {
@@ -18,7 +14,6 @@ namespace SimpleTemplateDB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<User.Domain.User.UserModel>().
             base.OnModelCreating(modelBuilder);
         }
     }

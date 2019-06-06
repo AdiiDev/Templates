@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SimpleTemplateDB.Entity;
@@ -22,10 +20,11 @@ namespace SimpleTemplateDB.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> Get()
         {
-            Person test = new Person { Name = "tester3" };
+            Person test = new Person { Name = "tester42" };
             await personService.SaveAsync(test);
 
-            throw new Exception();
+            //Uncomment to see that when exception is thrown test42 is not saved in database
+            //throw new Exception();
             return new string[] { "value1", "value2" };
         }
 

@@ -2,9 +2,7 @@
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Common.UOW
 {
@@ -33,8 +31,8 @@ namespace Common.UOW
                     }
                 })
                 .CurrentSessionContext("call")
-                //This should create and updates tables in db
-                //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
+                //This should create and updates tables in db. WARNING: SchemaUpdate can only CREATE and UPDATE. DELETE and DROP options are not avaiable
+                .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
                 .BuildSessionFactory();
         }
 
