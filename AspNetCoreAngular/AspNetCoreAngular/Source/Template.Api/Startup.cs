@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Common.UOW;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Template.Api.Filters;
+using KissLog;
+
 
 namespace Template.Api
 {
@@ -25,7 +22,20 @@ namespace Template.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //Add Unit of work DI
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //DI for KissLog
+            services.AddScoped<KissLog.ILogger>((context) =>
+            {
+                return Logger.Factory.Get();
+            });
+
+            //Add Unit of work filter
+            services.AddMvc(options => {
+                options.Filters.Add<UnitOfWorkActionFilter>();
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
