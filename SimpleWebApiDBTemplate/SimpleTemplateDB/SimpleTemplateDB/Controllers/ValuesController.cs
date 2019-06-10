@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SimpleTemplateDB.Entity;
@@ -30,8 +31,14 @@ namespace SimpleTemplateDB.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public async Task<ActionResult<string>> Get(int id)
         {
+            var test = await personService.FindAsync(x => x.Random > 90);
+            var test2 = await personService.FindAsync((x => x.Random > 90), (x => x.Random), ListSortDirection.Descending);
+            var test3 = await personService.FindAsync((x => x.Random > 90), (x => x.Random), ListSortDirection.Descending, true);
+            var test4 = await personService.FindAsync((x => x.Id > 0), 2, 10);
+            var test5 = await personService.FindAsync((x => x.Id > 0), 12, 10);
+
             return "value";
         }
 
@@ -39,6 +46,7 @@ namespace SimpleTemplateDB.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            var test22 = new TimeSpanConverter();
         }
 
         // PUT api/values/5

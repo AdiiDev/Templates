@@ -9,6 +9,7 @@ namespace SimpleTemplateDB.Entity
             Table("Osoby");
             Id(e => e.Id).GeneratedBy.Identity();
             Map(e => e.Name).Column("name");
+            Map(e => e.Random).Column("random");
         }
     }
 }
