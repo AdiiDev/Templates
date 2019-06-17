@@ -9,10 +9,24 @@
     <PackageReference Include="KissLog.AspNetCore" Version="2.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="OpenIddict" Version="2.0.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Database\Database.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Authorization\" />
+    <Folder Include="Claims\" />
+    <Folder Include="Managers\Interfaces\" />
+    <Folder Include="Managers\Managers\" />
+    <Folder Include="ViewModels\Models\Auth\" />
+    <Folder Include="ViewModels\Models\User\" />
+    <Folder Include="ViewModels\RequestViewModel\User\" />
+    <Folder Include="ViewModels\ResponseViewModels\" />
   </ItemGroup>
 
 </Project>

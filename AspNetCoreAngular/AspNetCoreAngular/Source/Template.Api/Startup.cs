@@ -11,6 +11,9 @@ using Microsoft.EntityFrameworkCore;
 using DatabaseApi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Template.Api.Authorization;
+using Template.Api.Managers.Interfaces;
+using Template.Api.Managers.Managers;
 
 namespace Template.Api
 {
