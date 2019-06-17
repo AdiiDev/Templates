@@ -1,4 +1,5 @@
 ﻿using Common.UOW;
+using Database.AuthDomain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Template.Api.Filters;
 using KissLog;
-
+using Microsoft.EntityFrameworkCore;
+using DatabaseApi;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Template.Api
 {
@@ -22,6 +26,14 @@ namespace Template.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connection = @"Server=.;Database=TestingTemplate;Trusted_Connection=True;MultipleActiveResultSets=true;";
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(connection);
+                options.UseOpenIddict();
+            });
+
+
             //Add Unit of work DI
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -30,6 +42,22 @@ namespace Template.Api
             {
                 return Logger.Factory.Get();
             });
+
+            // Add identity
+            services.AddIdentity<AppUser, AppUserRole>()
+                .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultTokenProviders();
+
+            // Account Manager
+            services.AddScoped<IAccountManager, AccountManager>();
+
+            // Auth Handlers
+            services.AddSingleton<IAuthorizationHandler, ViewUserAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, ManageUserAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, ViewRoleAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, AssignRolesAuthorizationHandler>();
+
+
 
             //Add Unit of work filter
             services.AddMvc(options => {

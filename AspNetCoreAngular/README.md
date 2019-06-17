@@ -1,0 +1,1 @@
+Some of the used code comes from this [template](https://github.com/emonney/QuickApp) and is licensed under MIT. 

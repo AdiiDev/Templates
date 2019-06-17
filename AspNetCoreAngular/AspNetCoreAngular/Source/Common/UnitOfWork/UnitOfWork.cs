@@ -15,7 +15,7 @@ namespace Common.UOW
         static UnitOfWork()
         {
             //Assemblies to Load with mappings
-            string[] AssembliesWithMappings = new[] { "SimpleTemplateDB" };
+            string[] AssembliesWithMappings = new[] { "Template.Api" };
 
             //Getting nhibernate nofiguration file from running assembly
             var configuration = new NHibernate.Cfg.Configuration().Configure(AppDomain.CurrentDomain.BaseDirectory + "\\hibernateSQL.cfg.xml");
