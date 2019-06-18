@@ -9,7 +9,6 @@ using DatabaseApi;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Template.Api.Managers;
 using Template.Api.Claims;
 using Template.Api.Managers.Interfaces;
 

@@ -4,7 +4,6 @@
     <property name="dialect">NHibernate.Dialect.MsSql2012Dialect</property>
     <property name="query.substitutions">hqlFunction=SQLFUNC</property>
     <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
-    <!--<property name="connection.connection_string">server=mssql2.webio.pl,2401;database=bestsolutions1_insurance;uid=bestsolutions1_insurance;pwd=!WelcomE!1;MultipleActiveResultSets=True;</property>-->
     <property name="connection.connection_string">Server=.;Database=TestingTemplate2;Trusted_Connection=True;</property>
     <property name="current_session_context_class">web</property>
     <property name="show_sql">true</property>
